@@ -1,0 +1,17 @@
+= link_to "New Note", new_note_url
+= link_to "My Notes", note_notes
+
+- @notes.each do |note|
+  %h1
+    = note.header
+    by
+    = link_to "#{note.user.login}", user_url(note.user.id)
+  %h2
+    = note.content
+  = link_to "Comment", new_note_comment_url(note_id: note.id)
+  - note.comments.each do |comment|
+    %p
+      comment by
+      = comment.user.login
+      = comment.text
+  %br
